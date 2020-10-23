@@ -352,6 +352,7 @@ video
   padding: 40px 0;
   text-align: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   font-size: 2.3rem;
   align-items: center; }
@@ -364,10 +365,31 @@ video
   @media only screen and (min-width: 1067px) and (max-width: 1470px) {
     .video {
       font-size: 2rem; } }
-  .video h4 {
-    padding: 20px; }
-  .video i {
-    color: #ff5f00; }
+  .video .tekstVideo {
+    flex: 0 0 40%; }
+    .video .tekstVideo h4 {
+      padding: 20px; }
+    .video .tekstVideo i {
+      color: #ff5f00; }
+    @media only screen and (max-width: 768px) {
+      .video .tekstVideo {
+        display: none; } }
+  .video .tekstVideoMobile {
+    display: none; }
+    @media only screen and (max-width: 768px) {
+      .video .tekstVideoMobile {
+        display: block;
+        flex: 0 0 100%; }
+        .video .tekstVideoMobile h4 {
+          padding: 20px; }
+        .video .tekstVideoMobile i {
+          color: #ff5f00; } }
+  .video iframe {
+    margin-top: 20px;
+    flex: 0 0 60%; }
+    @media only screen and (max-width: 768px) {
+      .video iframe {
+        flex: 0 0 100%; } }
 
 /**************
 singleProizvod
