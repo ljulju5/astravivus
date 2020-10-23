@@ -3,12 +3,12 @@
 $primaryColor: #ff5f00; 
 $secondaryColor: #eadbc2; 
 $white: #fff;
-$black: #333333;
-$orange: #e7931a;
-$padding: 80px 0;
+$black: #333333; /* rgb(51,51,51) */
+$padding: 40px 0;
 $font: 16px;
 $fontFamily: 'Montserrat', sans-serif;
 $transition: .4s ease;
+$boxShadow: 0 5px 15px lightgray;
 
 /**************
 mixins
@@ -29,6 +29,18 @@ mixins
     }
 }
 
+@keyframes footer {
+    0% {
+        color: $white;
+    }
+    50% {
+        color: $primaryColor;
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /**************
 basic styles
 **************/
@@ -40,6 +52,9 @@ basic styles
 body {
     font-size: $font;
     font-family: $fontFamily;
+    height: 100%;
+    min-height: 100%;
+    color: $black;
 }
 a {
     text-decoration: none;
@@ -48,7 +63,7 @@ ul {
     list-style: none;
 }
 .container {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     @media only screen and (max-width:768px) {
         width: 85%;
@@ -58,6 +73,16 @@ h2 {
     font-size: 3rem;
     text-align: center;
     color: $primaryColor;
+    padding-top: 20px;
+        @media only screen and (max-width:768px) {
+        font-size: 1.5rem;
+    }
+        @media only screen and (min-width: 769px) and (max-width: 1066px) {
+        font-size: 2rem;
+    }            
+        @media only screen and (min-width: 1067px) and (max-width: 1470px) {
+            font-size: 2.5rem;
+        }
     &::after {
         display: block;
         content: "";
@@ -65,6 +90,10 @@ h2 {
         height: 15px;
         background: linear-gradient(40deg, $primaryColor, $white);
         margin: 20px auto 40px auto;
+        @media only screen and (max-width:768px) {
+            height: 10px;
+            margin-bottom: 20px;
+        }
     }
 }
 /**************
@@ -76,17 +105,16 @@ header {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        .logo {
+        a {
             img {
-                flex: 0 0 10%;
                 height: 100px;
-                margin-right: 15px;
-            }
-        }
-            h3 {
-                flex: 0 0 20%;
-                font-size: 2.2rem;
-                color: $primaryColor;
+                @media only screen and (max-width:700px) {
+                    height: 33px;
+                }
+                @media only screen and (max-width: 1066px) and (min-width: 701px) {
+                    height: 60px;
+                }
+                }
         }
         p {
             flex: 0 0 70%;
@@ -94,10 +122,26 @@ header {
             display: flex;
             align-items: center;
             color: $black;
+            @media only screen and (max-width:768px) {
+                font-size: .8rem;
+                flex-direction: column;
+            }
+            @media only screen and (max-width: 1066px) and (min-width: 701px) {
+                    font-size: .9rem;
+                }
             i {
                 font-size: 2rem;
                 margin: 0 10px; 
                 color: $primaryColor;
+                @media only screen and (max-width:768px) {
+                display: none;
+            }
+                @media only screen and (max-width: 1066px) and (min-width: 701px) {
+                font-size: 1.5rem;
+            }
+            }
+            a {
+                color: $black;
             }
             .fa-envelope {
                     border-left: 2px solid $primaryColor;
@@ -131,6 +175,13 @@ nav {
                 font-weight: 500;
                 font-size: 1.2rem;
                 letter-spacing: 1.5px;
+                 @media only screen and (max-width:768px) {
+                    width:150px; 
+                    line-height: 35px;
+                    font-weight: 300;
+                    font-size: 1rem;
+                    letter-spacing: 1.2px;
+                }
             }
             &:hover {
                 background: $black;
@@ -157,6 +208,62 @@ nav {
 }
 
 /**************
+footer
+**************/
+footer {
+    background-color: $black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 40px 0 10px 0;
+    color: $white;
+    .container {
+        p {
+            text-align: center;
+            padding-top: 40px;
+            font-size: .9rem;
+            line-height: 1.5;
+            a {
+                color: $white;
+            }
+        }
+        .companyInfo {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            article {
+                text-align: center;
+                flex: 1;
+                @media only screen and (max-width:768px) {
+                    flex: 0 0 100%;
+                }
+                img {
+                    width: 60%;
+                    height: auto;
+                }
+                P {
+                    padding: 10px 0;
+                    @media only screen and (max-width:768px) {
+                        padding-bottom: 40px;
+                    }
+                }
+                a { 
+                    i {
+                        font-size: 1.6rem;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        color: $white;
+                        &:hover {
+                            animation: footer .7s ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/**************
 header-content
 **************/
 .header-content {
@@ -165,14 +272,21 @@ header-content
     background-repeat: no-repeat;
     background-position: center;
     min-height: 55vh;
+    display: flex;
+    align-items: center;
     h1 {
         font-size: 3.2rem;
         color: $white;
-        padding-top: 160px;
         letter-spacing: 1.5px;
         text-transform: uppercase;
         text-shadow: 4px 3px 0px grey, 9px 8px 0px rgba(0,0,0,0.15);
         line-height: 1.4;
+        @media only screen and (max-width:768px) {
+            font-size: 2rem;
+        }
+        @media only screen and (max-width: 1200px) and (min-width: 769px) {
+            font-size: 2.8rem;
+        }
     }
 }
 
@@ -180,35 +294,55 @@ header-content
 proizvodi
 **************/
 .proizvodi {
-    background-image: url(img/header-background.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     padding: $padding;
     .top-proizvodi {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        .col {
-            flex: 0 0 30%;
+        justify-content: space-around;
+        article {
+            flex: 0 0 23%;
             color: $primaryColor;
+            box-shadow: $boxShadow;
+            padding: 20px;
+            @media only screen and (max-width:768px) {
+                box-shadow: none;
+                flex: 0 0 80%;
+            }
+            @media only screen and (max-width: 1066px) and (min-width: 769px) {
+                    margin-bottom: 20px;
+                    box-shadow: none;
+                    flex: 0 0 48%;
+                }
+            @media only screen and (max-width: 1470px) and (min-width: 1067px) {
+                    padding: 20px 0;
+                    box-shadow: none;
+                    flex: 0 0 20%;
+                }
             .holder {
                overflow: hidden; 
                img {
-                   width: 100%;
-                   
+                    width: 100%;
+                    @media only screen and (max-width: 1470px) and (min-width: 1067px) {
+                    height: 291px;
+                }
                 }
                 &:hover {
-                    transform: scale(1.1);
-                    transition: $transition;
-                    }
+                    transform: scale(1.1);  
+                    transition: $transition;                  
+                }
+                @media only screen and (max-width:768px) {
+                    transform: none;
+                }
             }
             .product-info {
                 padding: 30px;
                 text-align: center;
-                position: relative;
-                top: -5px;
-                opacity: 0.9;
+                @media only screen and (max-width:768px) {
+                    padding-bottom: 0;
+                }
+                .logoHeading {
+                    min-height: 85px;
+                }
                 h4 {
                     margin: 5px 0;
                     text-transform: uppercase;
@@ -216,15 +350,170 @@ proizvodi
                 p {
                     font-size: .9rem;
                     color: $black;
-                    padding: 10px 0;
+                    padding: 10px 0 30px 0;
                 }
                 button {
                     @include btn;
                 }
             }
-
         }
     }    
 }
+
+/**************
+proizvodiDetalj
+**************/
+
+.proizvodiDetalj {
+    padding: $padding;
+    .sviProizvodi {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        article {
+            box-shadow: $boxShadow;
+            padding: 20px;
+            flex: 0 0 30%;
+            @media only screen and (max-width: 768px) {
+                margin-bottom: 20px;
+                box-shadow: none;
+                flex: 0 0 100%;;
+            }
+            @media only screen and (min-width: 769px) and (max-width: 1066px) {
+                margin-bottom: 20px;
+                box-shadow: none;
+                flex: 0 0 48%;
+            }            
+            @media only screen and (min-width: 1067px) and (max-width: 1470px) {
+                    padding: 20px 0;
+                    box-shadow: none;
+                    flex: 0 0 20%;
+                }
+            img {
+                width: 100%;
+            }
+            .product-info {
+                text-align: center;
+                h4 {
+                    margin-bottom: 10px;
+                }
+                p {
+                    margin: 20px;
+                }
+                button {
+                    @include btn;                    
+                    padding: 10px 20px;
+                    
+                }
+            }
+        }
+    }
+}
+
+/**************
+video
+**************/
+.video {
+    padding: $padding;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.3rem;
+    align-items: center;
+            @media only screen and (max-width: 768px) {
+                font-size: 1.5rem;
+            }
+            @media only screen and (min-width: 769px) and (max-width: 1066px) {
+                font-size: 1.8rem;
+            }            
+            @media only screen and (min-width: 1067px) and (max-width: 1470px) {
+                    font-size: 2rem;
+            }
+    h4 {
+        padding: 20px;
+    }
+    i {
+        color: $primaryColor;
+    }
+}
+
+/**************
+singleProizvod
+**************/
+.singleProizvod {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    article {    
+        &:first-child {
+            flex: 0 0 40%;
+                @media only screen and (max-width: 768px) {
+                flex: 0 0 100%
+            }
+           
+            img {
+                width: 100%;
+                height: auto;  
+                margin: 50px 0;
+                padding-right: 20px;
+            }
+        }
+        &:last-child {
+            flex: 0 0 60%;
+            @media only screen and (max-width: 768px) {
+                flex: 0 0 100%
+            }
+            h3 {
+                font-size: 2rem;
+                padding-bottom: 20px;
+                @media only screen and (min-width: 769px) and (max-width: 1066px) {
+                font-size: 1.2rem;
+                padding-top: 20px;
+            }   
+            }
+            p {
+                text-align: justify;
+                @media only screen and (min-width: 769px) and (max-width: 1066px) {
+                font-size: .9rem;
+            }   
+            }
+            button {
+                @include btn;
+                margin: 30px 0 50px 0;
+                @media only screen and (max-width: 768px) {
+                text-align: center;
+            }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

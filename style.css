@@ -1,7 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap");
+/* rgb(51,51,51) */
 /**************
 mixins
 **************/
+@keyframes footer {
+  0% {
+    color: #fff; }
+  50% {
+    color: #ff5f00; }
+  100% {
+    transform: rotate(360deg); } }
 /**************
 basic styles
 **************/
@@ -12,7 +20,10 @@ basic styles
 
 body {
   font-size: 16px;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
+  min-height: 100%;
+  color: #333333; }
 
 a {
   text-decoration: none; }
@@ -21,7 +32,7 @@ ul {
   list-style: none; }
 
 .container {
-  width: 70%;
+  width: 90%;
   margin: 0 auto; }
   @media only screen and (max-width: 768px) {
     .container {
@@ -30,7 +41,17 @@ ul {
 h2 {
   font-size: 3rem;
   text-align: center;
-  color: #ff5f00; }
+  color: #ff5f00;
+  padding-top: 20px; }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 1.5rem; } }
+  @media only screen and (min-width: 769px) and (max-width: 1066px) {
+    h2 {
+      font-size: 2rem; } }
+  @media only screen and (min-width: 1067px) and (max-width: 1470px) {
+    h2 {
+      font-size: 2.5rem; } }
   h2::after {
     display: block;
     content: "";
@@ -38,6 +59,10 @@ h2 {
     height: 15px;
     background: linear-gradient(40deg, #ff5f00, #fff);
     margin: 20px auto 40px auto; }
+    @media only screen and (max-width: 768px) {
+      h2::after {
+        height: 10px;
+        margin-bottom: 20px; } }
 
 /**************
 header
@@ -48,24 +73,39 @@ header {
     display: flex;
     flex-wrap: wrap;
     align-items: center; }
-    header .top-header .logo img {
-      flex: 0 0 10%;
-      height: 100px;
-      margin-right: 15px; }
-    header .top-header h3 {
-      flex: 0 0 20%;
-      font-size: 2.2rem;
-      color: #ff5f00; }
+    header .top-header a img {
+      height: 100px; }
+      @media only screen and (max-width: 700px) {
+        header .top-header a img {
+          height: 33px; } }
+      @media only screen and (max-width: 1066px) and (min-width: 701px) {
+        header .top-header a img {
+          height: 60px; } }
     header .top-header p {
       flex: 0 0 70%;
       justify-content: flex-end;
       display: flex;
       align-items: center;
       color: #333333; }
+      @media only screen and (max-width: 768px) {
+        header .top-header p {
+          font-size: .8rem;
+          flex-direction: column; } }
+      @media only screen and (max-width: 1066px) and (min-width: 701px) {
+        header .top-header p {
+          font-size: .9rem; } }
       header .top-header p i {
         font-size: 2rem;
         margin: 0 10px;
         color: #ff5f00; }
+        @media only screen and (max-width: 768px) {
+          header .top-header p i {
+            display: none; } }
+        @media only screen and (max-width: 1066px) and (min-width: 701px) {
+          header .top-header p i {
+            font-size: 1.5rem; } }
+      header .top-header p a {
+        color: #333333; }
       header .top-header p .fa-envelope {
         border-left: 2px solid #ff5f00;
         padding-left: 15px; }
@@ -94,6 +134,13 @@ nav {
         font-weight: 500;
         font-size: 1.2rem;
         letter-spacing: 1.5px; }
+        @media only screen and (max-width: 768px) {
+          nav #nav li a {
+            width: 150px;
+            line-height: 35px;
+            font-weight: 300;
+            font-size: 1rem;
+            letter-spacing: 1.2px; } }
       nav #nav li:hover {
         background: #333333;
         transition: 0.4s ease; }
@@ -111,6 +158,48 @@ nav {
       /* hides sublists */ }
 
 /**************
+footer
+**************/
+footer {
+  background-color: #333333;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 40px 0 10px 0;
+  color: #fff; }
+  footer .container p {
+    text-align: center;
+    padding-top: 40px;
+    font-size: .9rem;
+    line-height: 1.5; }
+    footer .container p a {
+      color: #fff; }
+  footer .container .companyInfo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; }
+    footer .container .companyInfo article {
+      text-align: center;
+      flex: 1; }
+      @media only screen and (max-width: 768px) {
+        footer .container .companyInfo article {
+          flex: 0 0 100%; } }
+      footer .container .companyInfo article img {
+        width: 60%;
+        height: auto; }
+      footer .container .companyInfo article P {
+        padding: 10px 0; }
+        @media only screen and (max-width: 768px) {
+          footer .container .companyInfo article P {
+            padding-bottom: 40px; } }
+      footer .container .companyInfo article a i {
+        font-size: 1.6rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        color: #fff; }
+        footer .container .companyInfo article a i:hover {
+          animation: footer .7s ease; }
+
+/**************
 header-content
 **************/
 .header-content {
@@ -118,53 +207,80 @@ header-content
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 55vh; }
+  min-height: 55vh;
+  display: flex;
+  align-items: center; }
   .header-content h1 {
     font-size: 3.2rem;
     color: #fff;
-    padding-top: 160px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     text-shadow: 4px 3px 0px grey, 9px 8px 0px rgba(0, 0, 0, 0.15);
     line-height: 1.4; }
+    @media only screen and (max-width: 768px) {
+      .header-content h1 {
+        font-size: 2rem; } }
+    @media only screen and (max-width: 1200px) and (min-width: 769px) {
+      .header-content h1 {
+        font-size: 2.8rem; } }
 
 /**************
 proizvodi
 **************/
 .proizvodi {
-  background-image: url(img/header-background.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 80px 0; }
+  padding: 40px 0; }
   .proizvodi .top-proizvodi {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; }
-    .proizvodi .top-proizvodi .col {
-      flex: 0 0 30%;
-      color: #ff5f00; }
-      .proizvodi .top-proizvodi .col .holder {
+    justify-content: space-around; }
+    .proizvodi .top-proizvodi article {
+      flex: 0 0 23%;
+      color: #ff5f00;
+      box-shadow: 0 5px 15px lightgray;
+      padding: 20px; }
+      @media only screen and (max-width: 768px) {
+        .proizvodi .top-proizvodi article {
+          box-shadow: none;
+          flex: 0 0 80%; } }
+      @media only screen and (max-width: 1066px) and (min-width: 769px) {
+        .proizvodi .top-proizvodi article {
+          margin-bottom: 20px;
+          box-shadow: none;
+          flex: 0 0 48%; } }
+      @media only screen and (max-width: 1470px) and (min-width: 1067px) {
+        .proizvodi .top-proizvodi article {
+          padding: 20px 0;
+          box-shadow: none;
+          flex: 0 0 20%; } }
+      .proizvodi .top-proizvodi article .holder {
         overflow: hidden; }
-        .proizvodi .top-proizvodi .col .holder img {
+        .proizvodi .top-proizvodi article .holder img {
           width: 100%; }
-        .proizvodi .top-proizvodi .col .holder:hover {
+          @media only screen and (max-width: 1470px) and (min-width: 1067px) {
+            .proizvodi .top-proizvodi article .holder img {
+              height: 291px; } }
+        .proizvodi .top-proizvodi article .holder:hover {
           transform: scale(1.1);
           transition: 0.4s ease; }
-      .proizvodi .top-proizvodi .col .product-info {
+        @media only screen and (max-width: 768px) {
+          .proizvodi .top-proizvodi article .holder {
+            transform: none; } }
+      .proizvodi .top-proizvodi article .product-info {
         padding: 30px;
-        text-align: center;
-        position: relative;
-        top: -5px;
-        opacity: 0.9; }
-        .proizvodi .top-proizvodi .col .product-info h4 {
+        text-align: center; }
+        @media only screen and (max-width: 768px) {
+          .proizvodi .top-proizvodi article .product-info {
+            padding-bottom: 0; } }
+        .proizvodi .top-proizvodi article .product-info .logoHeading {
+          min-height: 85px; }
+        .proizvodi .top-proizvodi article .product-info h4 {
           margin: 5px 0;
           text-transform: uppercase; }
-        .proizvodi .top-proizvodi .col .product-info p {
+        .proizvodi .top-proizvodi article .product-info p {
           font-size: .9rem;
           color: #333333;
-          padding: 10px 0; }
-        .proizvodi .top-proizvodi .col .product-info button {
+          padding: 10px 0 30px 0; }
+        .proizvodi .top-proizvodi article .product-info button {
           padding: 15px 40px;
           background: #ff5f00;
           border: none;
@@ -172,10 +288,137 @@ proizvodi
           letter-spacing: 1px;
           color: #fff;
           border-radius: 20px; }
-          .proizvodi .top-proizvodi .col .product-info button:hover {
+          .proizvodi .top-proizvodi article .product-info button:hover {
             background: #e65400;
             border-radius: 20px;
             cursor: pointer;
             transition: 0.4s ease; }
+
+/**************
+proizvodiDetalj
+**************/
+.proizvodiDetalj {
+  padding: 40px 0; }
+  .proizvodiDetalj .sviProizvodi {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .proizvodiDetalj .sviProizvodi article {
+      box-shadow: 0 5px 15px lightgray;
+      padding: 20px;
+      flex: 0 0 30%; }
+      @media only screen and (max-width: 768px) {
+        .proizvodiDetalj .sviProizvodi article {
+          margin-bottom: 20px;
+          box-shadow: none;
+          flex: 0 0 100%; } }
+      @media only screen and (min-width: 769px) and (max-width: 1066px) {
+        .proizvodiDetalj .sviProizvodi article {
+          margin-bottom: 20px;
+          box-shadow: none;
+          flex: 0 0 48%; } }
+      @media only screen and (min-width: 1067px) and (max-width: 1470px) {
+        .proizvodiDetalj .sviProizvodi article {
+          padding: 20px 0;
+          box-shadow: none;
+          flex: 0 0 20%; } }
+      .proizvodiDetalj .sviProizvodi article img {
+        width: 100%; }
+      .proizvodiDetalj .sviProizvodi article .product-info {
+        text-align: center; }
+        .proizvodiDetalj .sviProizvodi article .product-info h4 {
+          margin-bottom: 10px; }
+        .proizvodiDetalj .sviProizvodi article .product-info p {
+          margin: 20px; }
+        .proizvodiDetalj .sviProizvodi article .product-info button {
+          padding: 15px 40px;
+          background: #ff5f00;
+          border: none;
+          font-size: 1.2rem;
+          letter-spacing: 1px;
+          color: #fff;
+          border-radius: 20px;
+          padding: 10px 20px; }
+          .proizvodiDetalj .sviProizvodi article .product-info button:hover {
+            background: #e65400;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.4s ease; }
+
+/**************
+video
+**************/
+.video {
+  padding: 40px 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  font-size: 2.3rem;
+  align-items: center; }
+  @media only screen and (max-width: 768px) {
+    .video {
+      font-size: 1.5rem; } }
+  @media only screen and (min-width: 769px) and (max-width: 1066px) {
+    .video {
+      font-size: 1.8rem; } }
+  @media only screen and (min-width: 1067px) and (max-width: 1470px) {
+    .video {
+      font-size: 2rem; } }
+  .video h4 {
+    padding: 20px; }
+  .video i {
+    color: #ff5f00; }
+
+/**************
+singleProizvod
+**************/
+.singleProizvod {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; }
+  .singleProizvod article:first-child {
+    flex: 0 0 40%; }
+    @media only screen and (max-width: 768px) {
+      .singleProizvod article:first-child {
+        flex: 0 0 100%; } }
+    .singleProizvod article:first-child img {
+      width: 100%;
+      height: auto;
+      margin: 50px 0;
+      padding-right: 20px; }
+  .singleProizvod article:last-child {
+    flex: 0 0 60%; }
+    @media only screen and (max-width: 768px) {
+      .singleProizvod article:last-child {
+        flex: 0 0 100%; } }
+    .singleProizvod article:last-child h3 {
+      font-size: 2rem;
+      padding-bottom: 20px; }
+      @media only screen and (min-width: 769px) and (max-width: 1066px) {
+        .singleProizvod article:last-child h3 {
+          font-size: 1.2rem;
+          padding-top: 20px; } }
+    .singleProizvod article:last-child p {
+      text-align: justify; }
+      @media only screen and (min-width: 769px) and (max-width: 1066px) {
+        .singleProizvod article:last-child p {
+          font-size: .9rem; } }
+    .singleProizvod article:last-child button {
+      padding: 15px 40px;
+      background: #ff5f00;
+      border: none;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      color: #fff;
+      border-radius: 20px;
+      margin: 30px 0 50px 0; }
+      .singleProizvod article:last-child button:hover {
+        background: #e65400;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.4s ease; }
+      @media only screen and (max-width: 768px) {
+        .singleProizvod article:last-child button {
+          text-align: center; } }
 
 /*# sourceMappingURL=style.css.map */
